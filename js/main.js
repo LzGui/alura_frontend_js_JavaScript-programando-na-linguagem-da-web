@@ -1,38 +1,29 @@
-/* var altura = document.querySelector(".info-altura");
-var peso = document.querySelector(".info-peso");
-var imc = document.querySelector(".info-imc");
+var paciente = document.querySelectorAll(".paciente");
 
-imc.textContent = altura.textContent / (peso.textContent * peso.textContent);
+for (let i = 0; i < paciente.length; i++) {
+    var peso = paciente[i].querySelector(".info-peso").textContent;
+    var altura = paciente[i].querySelector(".info-altura").textContent;
+    var tdImc = paciente[i].querySelector(".info-imc");
 
+    var vPeso = true;
+    var vAltura = true;
 
-console.log(imc) */
+    if (peso < 0 || peso > 250) {
+        vPeso = false;
+        tdImc.textContent = "Peso inválido!";
+        paciente[i].classList.add("dado-invalido");
+    }
 
-var paciente = document.querySelector("#primeiro-paciente");
-var peso = paciente.querySelector(".info-peso").textContent;
-var altura = paciente.querySelector(".info-altura").textContent;
-var tdImc = paciente.querySelector(".info-imc");
+    if (altura < 0 || altura > 2.5) {
+        vAltura = false;
+        tdImc.textContent = "Altura Inválida!";
+        paciente[i].classList.add("dado-invalido");
+    }
 
-/* if (peso > 0 & peso < 200 & altura > 0 & altura < 2.5) {
-    imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-} else {
-    alert("Parâmetros inválidos")
-} */
+    if (vPeso && vAltura) {
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2);
+    }
 
-var vPeso = true;
-var vAltura = true;
-
-if (peso < 0 || peso > 250) {
-    vPeso = false;
-    tdImc.textContent = "Peso inválido!"
 }
 
-if (altura < 0 || altura > 2.5) {
-    vAltura = false;
-    tdImc.textContent = "Altura Inválidos!"
-}
-
-if (vPeso && vAltura) {
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-}
